@@ -1,0 +1,97 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="description"
+			content="Printing Talks is a locally owned packaging & printing company that provides high quality procucts & timely services!"
+		/>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+
+	h1 {
+		@apply text-5xl;
+	}
+	h2 {
+		@apply text-4xl;
+	}
+	h3 {
+		@apply text-3xl;
+	}
+	h4 {
+		@apply text-2xl;
+	}
+	h5 {
+		@apply text-xl;
+	}
+	h6 {
+		@apply text-lg;
+	}
+
+	@font-face {
+		font-family: Avenir;
+		src: url(/fonts/AvenirLTStd-Heavy.otf);
+		font-weight: 700;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: Avenir;
+		src: url(/fonts/AvenirLTStd-Medium.otf);
+		font-weight: 500;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: Avenir;
+		src: url(/fonts/AvenirLTStd-Roman.otf);
+		font-weight: 400;
+		font-style: normal;
+	}
+	html {
+		font-family: "Avenir", system-ui, sans-serif;
+		background: var(--base-100);
+		color: var(--base-content);
+	}
+	code {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+	}
+	.hide-scroll-bar {
+		/* For Internet Explorer, Edge */
+		-ms-overflow-style: none;
+
+		/* For Firefox */
+		scrollbar-width: none;
+	}
+	/* For Chrome, Safari, Opera */
+	.hide-scroll-bar::-webkit-scrollbar {
+		display: none;
+	}
+</style>
