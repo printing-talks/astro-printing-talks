@@ -7,7 +7,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html data-theme="printingTalks" lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta
@@ -93,5 +93,9 @@ const { title } = Astro.props;
 	/* For Chrome, Safari, Opera */
 	.hide-scroll-bar::-webkit-scrollbar {
 		display: none;
+	}
+	#request-quote-form-section {
+		object-fit: fill;
+		background-image: url("/images/boxes-texture.png");
 	}
 </style>

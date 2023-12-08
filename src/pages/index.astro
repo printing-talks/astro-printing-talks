@@ -1,21 +1,23 @@
 ---
 import Boilerplate from "../layouts/Boilerplate.astro";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer.astro";
+import QuoteForm from "../components/QuoteForm";
 import ProductCard from "../components/ProductCard";
 import TestimonialCard from "../components/TestimonialCard";
 ---
 
 <Boilerplate title="Printing Talks">
 	<main>
-		<div class="container mx-auto px-6">
+		<div class="container mx-auto px-6 space-y-20">
 			<!-- Header and navigation -->
 			<Navbar
 				logo="/images/printing-talks.svg"
 				links={[
 					{ title: "Home", href: "/" },
-					{ title: "About", href: "/about" },
+					{ title: "Products", href: "/products" },
 				]}
-				ctaHref="/contact"
+				ctaHref="/#request-quote-form"
 			/>
 			<div
 				id="hero"
@@ -72,14 +74,9 @@ import TestimonialCard from "../components/TestimonialCard";
 					<TestimonialCard />
 				</div>
 			</div>
-
-			<!-- Request Quote Form -->
-			<form id="request-quote-form">
-				<!-- Form fields -->
-				<h4>Printing Talks</h4>
-			</form>
-
+			<QuoteForm client:load />
 			<!-- Footer -->
+			<Footer />
 		</div>
 	</main>
 </Boilerplate>

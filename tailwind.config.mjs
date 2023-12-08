@@ -3,20 +3,6 @@ export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
 	theme: {
 		extend: {
-			colors: {
-				"primary": "#171D2C",
-				"secondary": "#D4DCED",
-				"accent": "#831D3A",
-				"accent-content": "#FFF",
-				"neutral": "#808080",
-				"base-125": "#fff",
-				"base-200": "#F7F7F7",
-				"base-300": "#F1F1F1",
-				"info": "#93c5fd",
-				"success": "#22c55e",
-				"warning": "#f59e0b",
-				"error": "#ef4444",
-			},
 			fontFamily: {
 				sans: ['Avenir', 'Helvetica', 'sans-serif'],
 			},
@@ -46,6 +32,27 @@ export default {
 				}],
 			},
 		},
+	},
+	daisyui: {
+		themes:
+			[
+				{
+					printingTalks: {
+						"primary": "#171D2C",
+						"secondary": "#D4DCED",
+						"accent": "#831D3A",
+						"neutral": "#808080",
+						"base-100": "#fff",
+						"base-200": "#F7F7F7",
+						"base-300": "#F1F1F1",
+						"info": "#93c5fd",
+						"success": "#22c55e",
+						"warning": "#f59e0b",
+						"error": "#ef4444",
+					},
+				},
+				"dark",
+			],
 	},
 	plugins: [require("daisyui")],
 }
