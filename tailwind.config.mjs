@@ -51,7 +51,6 @@ export default {
 						"error": "#ef4444",
 					},
 				},
-				"dark",
 			],
 	},
 	plugins: [require("daisyui")],

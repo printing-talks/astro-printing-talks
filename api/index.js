@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import sgMail from '@sendgrid/mail';
 import { validationResult, check } from 'express-validator';
+import DOMPurify from 'dompurify';
 
 dotenv.config();
 

@@ -5,7 +5,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import * as DOMPurify from 'dompurify';
+import DOMPurify from 'dompurify';
 
 interface IFormInput {
   firstName: string;
@@ -59,21 +59,21 @@ function QuoteForm() {
     }
   };
 
+
   // Initialize useForm
   const { register, handleSubmit, reset, formState: { errors } } = useForm<IFormInput>({
     resolver: yupResolver(schema),
   });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    console.log(data);
     const submissionData = {
-      firstName: DOMPurify.sanitize(firstName),
-      lastName: DOMPurify.sanitize(lastName),
-      email: DOMPurify.sanitize(email),
-      phone: DOMPurify.sanitize(phone),
-      products: DOMPurify.sanitize(product),
-      artwork: DOMPurify.sanitize(artwork),
-      quantity: DOMPurify.sanitize(quantity),
+      firstName: DOMPurify.sanitize(data.firstName),
+      lastName: DOMPurify.sanitize(data.lastName),
+      email: DOMPurify.sanitize(data.email),
+      phone: DOMPurify.sanitize(data.phone),
+      product: DOMPurify.sanitize(data.product),
+      artwork: DOMPurify.sanitize(data.artwork),
+      quantity: DOMPurify.sanitize(data.quantity),
     };
     try {
       const response = await fetch('/api', {
@@ -81,18 +81,15 @@ function QuoteForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(submissionData),
       });
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
       const result = await response.json();
       console.log('Response:', result);
       // Provide feedback to the user
       alert("Form submitted successfully!");
-      // Reset the form fields
       reset();
-
+      reset({ firstName: '', lastName: '', email: '', phone: '' })
     } catch (error) {
       console.error('Error submitting form:', error);
       // Handle error - display error message to user
@@ -102,7 +99,7 @@ function QuoteForm() {
   return (
     <section
       id="request-quote-form-section"
-      className="w-full rounded-3xl bg-accent grid place-items-center p-6 text-accent-content"
+      className="mt-20 w-full rounded-3xl bg-accent grid place-items-center p-6 text-accent-content"
     >
       <h2 className="text-3xl lg:text-4xl">Request a quote</h2>
       <p className="text-lg lg:text-xl">Get a custom quote for boxes and more.</p>
@@ -184,9 +181,9 @@ function QuoteForm() {
           {...register('product')}
           required value={product} onChange={(e) => setProduct(e.target.value)}>
           <option disabled >Select one</option>
-          <option>Product 1</option>
-          <option>Product 2</option>
-          <option>Product 3</option>
+          <option value="1">Product 1</option>
+          <option value="2">Product 2</option>
+          <option value="3">Product 3</option>
         </select>
         {errors.product &&
           <div className="label">
@@ -200,8 +197,8 @@ function QuoteForm() {
           className={`select select-bordered text-base-content w-full ${errors.artwork ? 'select-error' : ''}`}
           {...register('artwork')} required value={artwork} onChange={(e) => setArtwork(e.target.value)}>
           <option disabled>Select one</option>
-          <option>Yes</option>
-          <option>No</option>
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
         </select>
         {errors.artwork &&
           <div className="label">
@@ -216,9 +213,9 @@ function QuoteForm() {
           {...register('quantity')} required value={quantity}
           onChange={(e) => setQuantity(e.target.value)}>
           <option disabled>Select one</option>
-          <option>Small</option>
-          <option>Medium</option>
-          <option>Large</option>
+          <option value="Small">Small</option>
+          <option value="Medium">Medium</option>
+          <option value="Large">Large</option>
         </select>
         {errors.quantity &&
           <div className="label">
