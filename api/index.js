@@ -18,7 +18,7 @@ const validateQuotation = [
     check('lastName', 'Last Name is required').not().isEmpty(),
     check('email', 'Please include a valid email').isEmail(),
     check('phone', 'Please include a valid phone number').isMobilePhone(),
-    check('products', 'Products field is required').not().isEmpty(),
+    check('product', 'Product field is required').not().isEmpty(),
     check('quantity', 'Quantity must be a number').not().isEmpty(),
     check('artwork', 'Artwork field is required').not().isEmpty()
 ];
@@ -40,7 +40,7 @@ export default async function sendQuotation(req, res) {
         lastName,
         phone,
         email,
-        products,
+        product,
         quantity,
         artwork
     } = req.body;
@@ -60,11 +60,13 @@ export default async function sendQuotation(req, res) {
 
     const dateTimeString = `${dateString} ${timeString}`;
 
+    const emailList = ['abdulla@printingtalks.ae', 'mohamed@printingtalks.ae', 'mariam@printingtalks.ae', 'abed@printingtalks.ae', 'saleh.lootah2@gmail.com']
+
     const message = {
-        to: ['abdulla@printingtalks.ae', 'mohamed@printingtalks.ae', 'mariam@printingtalks.ae', 'abed@printingtalks.ae', 'saleh.lootah2@gmail.com'],
-        from: 'contact@salehlootah.com',
+        to: 'saleh.lootah2@gmail.com',
+        from: 'dev@printingtalks.ae',
         subject: '🚨 New Quotation Request 🚨',
-        text: `Date and Time: ${dateTimeString}\nFirst Name: ${firstName}\nLast Name: ${lastName}\nEmail: ${email}\nPhone: ${phone}\nProduct: ${products}\nQuantity: ${quantity}\nArtwork: ${artwork}`,
+        text: `Date and Time: ${dateTimeString}\nFirst Name: ${firstName}\nLast Name: ${lastName}\nEmail: ${email}\nPhone: ${phone}\nProduct: ${product}\nQuantity: ${quantity}\nArtwork: ${artwork}`,
     };
 
     try {

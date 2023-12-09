@@ -5,27 +5,38 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import * as DOMPurify from 'dompurify';
 
 interface IFormInput {
   firstName: string;
   lastName: string;
   email: string;
-  phoneClean: string;
+  phone: string;
   product: string;
   artwork: string;
   quantity: string;
 }
 
-const phoneNumberRegex = /^\d{1,15}$/;
+const phoneNumberRegex = /^\d{1,3}\d{3,}$/;
 const nameRegex = /^[A-Za-z\u00C0-\u00FF]+$/;
+
+const cleanPhone = (value: string) => {
+  try {
+    return value.replace(/\D+/g, '');
+  } catch (error) {
+    console.error('Error cleaning phone value:', error);
+  }
+};
 
 const schema = yup.object({
   firstName: yup.string().matches(nameRegex, 'First name should only contain letters').required('First name is required'),
   lastName: yup.string().matches(nameRegex, 'Last name should only contain letters').required('Last name is required'),
   email: yup.string().required('Email is required').email('Email is invalid'),
-  phoneClean: yup.string()
-    .matches(phoneNumberRegex, 'Phone number is not valid')
-    .required('Phone number is required'),
+  phone: yup.string()
+    .transform((value, originalValue) => {
+      return cleanPhone(originalValue);
+    })
+    .required('Phone number is required').matches(phoneNumberRegex, 'Invalid phone number'),
   product: yup.string().required('Field is required'),
   artwork: yup.string().required('Field is required'),
   quantity: yup.string().required('Field is required'),
@@ -36,36 +47,39 @@ function QuoteForm() {
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
-  const [phoneClean, setPhoneClean] = useState('');
   const [product, setProduct] = useState('')
   const [artwork, setArtwork] = useState('')
   const [quantity, setQuantity] = useState('')
 
   const handlePhoneChange = (value: string) => {
     if (typeof value === 'string') {
-      const phoneNumber = value.replace(/^\+/, '');
-      setPhoneClean(phoneNumber);
       setPhone(value)
-      console.log(phone);
-      console.log(phoneClean);
     } else {
       // Handle the case where value is not a valid number (or is not a string)
     }
   };
 
   // Initialize useForm
-  const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<IFormInput>({
     resolver: yupResolver(schema),
   });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    console.log(data);
+    const submissionData = {
+      firstName: DOMPurify.sanitize(firstName),
+      lastName: DOMPurify.sanitize(lastName),
+      email: DOMPurify.sanitize(email),
+      phone: DOMPurify.sanitize(phone),
+      products: DOMPurify.sanitize(product),
+      artwork: DOMPurify.sanitize(artwork),
+      quantity: DOMPurify.sanitize(quantity),
+    };
     try {
-      const response = await fetch('YOUR_ENDPOINT_URL', {
+      const response = await fetch('/api', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(submissionData),
       });
 
       if (!response.ok) {
@@ -74,7 +88,11 @@ function QuoteForm() {
 
       const result = await response.json();
       console.log('Response:', result);
-      // Handle success - you might want to clear the form or display a success message
+      // Provide feedback to the user
+      alert("Form submitted successfully!");
+      // Reset the form fields
+      reset();
+
     } catch (error) {
       console.error('Error submitting form:', error);
       // Handle error - display error message to user
@@ -90,6 +108,7 @@ function QuoteForm() {
       <p className="text-lg lg:text-xl">Get a custom quote for boxes and more.</p>
 
       <form id="request-quote-form" className="form-control w-full max-w-xs" onSubmit={handleSubmit(onSubmit)}>
+
         <label className="label">
           <span className="label-text text-accent-content">First Name</span>
         </label>
@@ -145,15 +164,15 @@ function QuoteForm() {
           <span className="label-text text-accent-content">Phone Number</span>
         </label>
         <Input
-          placeholder="971 12 345 6789"
+          placeholder="+971 12 345 6789"
           value={phone}
-          className={`input input-bordered text-base-content w-full ${errors.phoneClean ? 'input-error' : ''}`}
-          {...register('phoneClean')}
+          className={`input input-bordered text-base-content w-full ${errors.phone ? 'input-error' : ''}`}
+          {...register('phone')}
           onChange={handlePhoneChange}
         />
-        {errors.phoneClean &&
+        {errors.phone &&
           <div className="label">
-            <span className="label-text-alt text-accent-content">{errors.phoneClean.message}</span>
+            <span className="label-text-alt text-accent-content">{errors.phone.message}</span>
           </div>}
 
         <label className="label">
@@ -161,7 +180,7 @@ function QuoteForm() {
           >What packaging products are you interested in?</span>
         </label>
         <select
-          className={`select select-bordered text-base-content w-full ${errors.product ? 'input-error' : ''}`}
+          className={`select select-bordered text-base-content w-full ${errors.product ? 'select-error' : ''}`}
           {...register('product')}
           required value={product} onChange={(e) => setProduct(e.target.value)}>
           <option disabled >Select one</option>
@@ -178,7 +197,7 @@ function QuoteForm() {
           <span className="label-text text-accent-content">Do you have artwork?</span>
         </label>
         <select
-          className={`select select-bordered text-base-content w-full ${errors.artwork ? 'input-error' : ''}`}
+          className={`select select-bordered text-base-content w-full ${errors.artwork ? 'select-error' : ''}`}
           {...register('artwork')} required value={artwork} onChange={(e) => setArtwork(e.target.value)}>
           <option disabled>Select one</option>
           <option>Yes</option>
@@ -193,7 +212,7 @@ function QuoteForm() {
           <span className="label-text text-accent-content">Quantity</span>
         </label>
         <select
-          className={`select select-bordered text-base-content w-full ${errors.quantity ? 'input-error' : ''}`}
+          className={`select select-bordered text-base-content w-full ${errors.quantity ? 'select-error' : ''}`}
           {...register('quantity')} required value={quantity}
           onChange={(e) => setQuantity(e.target.value)}>
           <option disabled>Select one</option>
