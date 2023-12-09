@@ -3,7 +3,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import sgMail from '@sendgrid/mail';
 import { validationResult, check } from 'express-validator';
-import DOMPurify from 'dompurify';
 
 dotenv.config();
 
@@ -24,8 +23,7 @@ const validateQuotation = [
     check('artwork', 'Artwork field is required').not().isEmpty()
 ];
 
-export default async function sendQuotation(req, res) {
-
+async function sendQuotation(req, res) {
     // Apply validation checks here
     await Promise.all(validateQuotation.map(validation => validation.run(req)));
 
@@ -78,3 +76,10 @@ export default async function sendQuotation(req, res) {
         res.status(500).json({ message: 'Failed to send email.' });
     }
 }
+
+app.post('/api/request-quote', async (req, res) => {
+    // sendQuotation(req, res);
+    console.log("WOAH THERE");
+});
+
+export default app;

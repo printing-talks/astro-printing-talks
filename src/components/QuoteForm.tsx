@@ -76,7 +76,7 @@ function QuoteForm() {
       quantity: DOMPurify.sanitize(data.quantity),
     };
     try {
-      const response = await fetch('/api', {
+      const response = await fetch('/api/request-quote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(submissionData),
