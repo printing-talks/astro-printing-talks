@@ -24,7 +24,6 @@ const validateQuotation = [
     check('artwork', 'Artwork field is required').not().isEmpty()
 ];
 
-// Serverless function to send a quotation email
 export default async function sendQuotation(req, res) {
 
     // Apply validation checks here

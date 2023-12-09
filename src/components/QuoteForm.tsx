@@ -88,7 +88,6 @@ function QuoteForm() {
       console.log('Response:', result);
       // Provide feedback to the user
       alert("Form submitted successfully!");
-      reset();
       reset({ firstName: '', lastName: '', email: '', phone: '' })
     } catch (error) {
       console.error('Error submitting form:', error);
