@@ -98,7 +98,7 @@ function QuoteForm() {
   return (
     <section
       id="request-quote-form-section"
-      className="mt-20 w-full rounded-3xl bg-accent grid place-items-center p-6 text-accent-content"
+      className="mt-[96px] w-full rounded-3xl bg-accent grid place-items-center p-6 text-accent-content"
     >
       <h2 className="text-3xl lg:text-4xl">Request a quote</h2>
       <p className="text-lg lg:text-xl">Get a custom quote for boxes and more.</p>
