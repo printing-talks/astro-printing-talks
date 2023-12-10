@@ -2,6 +2,13 @@
 import Boilerplate from "../layouts/Boilerplate.astro";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer.astro";
+import ProductsList from "../components/ProductsList";
+import { client } from "../../tina/__generated__/client";
+const myPost = await client.queries.product({
+  relativePath: "cup-example.json",
+});
+
+console.log(myPost.data.product);
 ---
 
 <Boilerplate title="Printing Talks">
@@ -46,6 +53,7 @@ import Footer from "../components/Footer.astro";
       <div
         class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 md:gap-6 min-h-[12rem] w-full"
       >
+        <!-- <ProductsList client:load /> -->
       </div>
     </div>
   </div>

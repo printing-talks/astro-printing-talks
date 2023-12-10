@@ -36,6 +36,12 @@ export default defineConfig({
         fields: [
           {
             type: "string",
+            name: "slug",
+            label: "Product Slug",
+            required: true,
+          },
+          {
+            type: "string",
             name: "productName",
             label: "Product Name",
             required: true,
@@ -107,5 +113,6 @@ export default defineConfig({
         ],
       },
     ],
+
   },
 });
