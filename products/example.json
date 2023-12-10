@@ -1,0 +1,21 @@
+{
+  "productName": "Default Product Name",
+  "productDescription": "This is a default description for the product. Edit to add specific details.\n",
+  "imageUrls": {
+    "image1": "default-front-view-url.png",
+    "image2": "default-back-view-url.png",
+    "image3": "default-side-view-url.png",
+    "image4": "default-detail-view-url.png"
+  },
+  "minOrder": 1,
+  "types": [
+    "Default Type 1",
+    "Default Type 2"
+  ],
+  "availableSizes": [
+    "Small",
+    "Medium",
+    "Large"
+  ],
+  "isBestSeller": true
+}
