@@ -5,42 +5,43 @@ import { client } from '../../tina/__generated__/client';
 interface Product {
   productName: string;
   productDescription: string;
-  // Add other fields as needed
+  imageUrls: {
+    image1: string;
+    image2: string;
+    image3: string;
+    image4: string;
+  };
+  minOrder: number;
+  types: string[];
+  availableSizes: string[];
+  isBestSeller: boolean;
 }
 
 const ProductsList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  function parseContent(content) {
+    if (content.type === 'text') {
+      return content.text;
+    } else if (content.type === 'p') {
+      return <p>{content.children.map(parseContent)}</p>;
+    } else {
+      return null;
+    }
+  }
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const query = `
-      productConnection {
-        edges {
-          node {
-            slug
-            productName
-            productDescription
-            imageUrls {
-              image1
-              image2
-              image3
-              image4
-            }
-            minOrder
-            types
-            availableSizes
-            isBestSeller
-          }
-        }
-      }
-      `;
-
       try {
-        const response = await client.request(query);
-        setProducts(response.getProductsList.edges.map(edge => edge.node.data));
+        const productsResponse = await client.queries.productConnection();
+        const products = productsResponse.data.productConnection.edges.map((edge) => edge.node);
+        console.log(products);
+        setProducts(products);
       } catch (error) {
         console.error('Error fetching products:', error);
+        setError('Error fetching products. Please try again later.');
       } finally {
         setLoading(false);
       }
@@ -50,12 +51,14 @@ const ProductsList: React.FC = () => {
   }, []);
 
   if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
+
   return (
     <div>
       {products.map((product, index) => (
-        <div key={index}>
+        <div key={index}> {/* Use index as a last resort if there's no unique field */}
           <h2>{product.productName}</h2>
-          <p>{product.productDescription}</p>
+          {product.productDescription.children.map(parseContent)}
           {/* Render other details */}
         </div>
       ))}
