@@ -1,0 +1,80 @@
+---
+import Boilerplate from "../layouts/Boilerplate.astro";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer.astro";
+import QuoteForm from "../components/QuoteForm";
+import ProductCard from "../components/ProductCard";
+import TestimonialCard from "../components/TestimonialCard";
+---
+
+<Boilerplate title="Printing Talks">
+	<main class="px-[16px] lg:px-[88px] space-y-[96px]">
+		<!-- Header and navigation -->
+		<Navbar
+			logo="/images/printing-talks.svg"
+			links={[
+				{ title: "Home", href: "/" },
+				{ title: "Products", href: "/product-gallery" },
+			]}
+			ctaHref="/#request-quote-form"
+		/>
+		<div
+			id="hero"
+			class="relative rounded-3xl p-6 h-[80svh] min-h-[632px] max-h-[752px] grid place-items-center overflow-hidden"
+		>
+			<div
+				id="hero-text"
+				class="z-10 p-4 lg:backdrop-blur-lg rounded-2xl flex flex-col gap-2"
+			>
+				<h1 class="max-w-[600px]">
+					Custom packaging that leaves an
+					<span class="font-bold">impact</span>
+				</h1>
+				<h6>Make a great impression, even before your packages are unboxed!</h6>
+			</div>
+			<img
+				class="invisible lg:visible absolute -right-10 h-[100%]"
+				src="./images/hero.svg"
+				alt=""
+			/>
+		</div>
+		<!-- Best Sellers Carousel -->
+		<div id="best-sellers-carousel">
+			<h3>
+				Our best sellers. <span class="text-neutral font-thin"
+					>Explore our best selling products across a range of categories</span
+				>
+			</h3>
+			<div class="hide-scroll-bar flex gap-4 overflow-auto p-4">
+				<ProductCard />
+				<ProductCard />
+				<ProductCard />
+			</div>
+		</div>
+		<!-- Testimonials Carousel -->
+		<div id="testimonials-carousel">
+			<h3>
+				Testimonials. <span class="text-neutral font-thin"
+					>Trust is at the core of everything we do</span
+				>
+			</h3>
+			<div class="hide-scroll-bar flex gap-4 overflow-auto p-4">
+				<TestimonialCard />
+				<TestimonialCard />
+				<TestimonialCard />
+				<TestimonialCard />
+				<TestimonialCard />
+				<TestimonialCard />
+				<TestimonialCard />
+				<TestimonialCard />
+				<TestimonialCard />
+				<TestimonialCard />
+			</div>
+		</div>
+		<QuoteForm client:load />
+		<!-- Footer -->
+		<Footer />
+	</main>
+</Boilerplate>
+
+<style></style>

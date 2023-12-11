@@ -1,0 +1,81 @@
+---
+import Boilerplate from "../layouts/Boilerplate.astro";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer.astro";
+import type { MarkdownLayoutProps } from "astro";
+
+type Props = MarkdownLayoutProps<{
+  // Define frontmatter props here
+  productName: string;
+  category: string;
+  productDescription: string;
+  imageUrls: Array<string>;
+  isBestSeller: boolean;
+  availableSizes: Array<string>;
+  slug: string;
+}>;
+const { frontmatter } = Astro.props;
+---
+
+<Boilerplate title={`PrintingTalks - ${frontmatter.productName}`}>
+  <Navbar
+    logo="/images/printing-talks.svg"
+    links={[
+      { title: "Home", href: "/" },
+      { title: "Products", href: "/product-gallery" },
+    ]}
+    ctaHref="/#request-quote-form"
+  />
+  <main>
+    <div
+      class="container flex flex-col md:flex-row mx-auto my-16 min-h-[100svh]"
+    >
+      <div id="product-images" class="flex flex-wrap flex-grow">
+        {
+          Object.values(frontmatter.imageUrls).map(
+            (url) => url && <img src={url} alt="" />,
+          )
+        }
+      </div>
+      <div id="product-info" class="flex flex-col pl-12 w-[478px] gap-4">
+        {
+          frontmatter.isBestSeller && (
+            <div class="grid place-items-center bg-orange-400 px-3 py-1 rounded-2xl max-w-fit">
+              <small class="font-bold">Best Seller</small>
+            </div>
+          )
+        }
+        <div>
+          <h3>{frontmatter.productName}</h3>
+          <h6>{frontmatter.category}</h6>
+        </div>
+        <div>
+          <p class="font-bold">Description</p>
+          <p>{frontmatter.productDescription}</p>
+        </div>
+        <div>
+          <p class="font-bold">Product Types</p>
+          <div id="type-selection" class="flex flex-wrap">
+            product type component
+          </div>
+        </div>
+        {
+          frontmatter.availableSizes &&
+            frontmatter.availableSizes.length > 0 && (
+              <div>
+                <p class="font-bold">Available Sizes</p>
+                <div class="flex flex-wrap gap-2">
+                  {frontmatter.availableSizes.map((size) => (
+                    <div class="grid place-items-center border rounded-md w-[104px] h-10">
+                      <p>{size}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+        }
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Boilerplate>
