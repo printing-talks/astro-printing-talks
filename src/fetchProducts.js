@@ -1,4 +1,4 @@
-import { client } from "../../tina/__generated__/client";
+import { client } from "../tina/__generated__/client";
 
 const fetchProducts = async () => {
   try {
@@ -11,3 +11,5 @@ const fetchProducts = async () => {
     console.error("Error fetching products:", error);
   }
 };
+
+export default fetchProducts

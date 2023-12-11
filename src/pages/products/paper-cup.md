@@ -11,7 +11,7 @@ imageUrls:
   image4: "#"
 minOrder: 200
 availableSizes: ['4', '8']
-isBestSeller: False
+isBestSeller: True
 slug: paper-cup
 ---
 

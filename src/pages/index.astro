@@ -3,8 +3,8 @@ import Boilerplate from "../layouts/Boilerplate.astro";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer.astro";
 import QuoteForm from "../components/QuoteForm";
-import ProductCard from "../components/ProductCard";
 import TestimonialCard from "../components/TestimonialCard";
+import BestSellerCarousel from "../components/BestSellerCarousel";
 ---
 
 <Boilerplate title="Printing Talks">
@@ -39,17 +39,13 @@ import TestimonialCard from "../components/TestimonialCard";
 			/>
 		</div>
 		<!-- Best Sellers Carousel -->
-		<div id="best-sellers-carousel">
+		<div id="best-sellers-carousel" class="flex flex-col gap-6">
 			<h3>
 				Our best sellers. <span class="text-neutral font-thin"
 					>Explore our best selling products across a range of categories</span
 				>
 			</h3>
-			<div class="hide-scroll-bar flex gap-4 overflow-auto p-4">
-				<ProductCard />
-				<ProductCard />
-				<ProductCard />
-			</div>
+			<BestSellerCarousel client:load />
 		</div>
 		<!-- Testimonials Carousel -->
 		<div id="testimonials-carousel">
@@ -59,15 +55,6 @@ import TestimonialCard from "../components/TestimonialCard";
 				>
 			</h3>
 			<div class="hide-scroll-bar flex gap-4 overflow-auto p-4">
-				<TestimonialCard />
-				<TestimonialCard />
-				<TestimonialCard />
-				<TestimonialCard />
-				<TestimonialCard />
-				<TestimonialCard />
-				<TestimonialCard />
-				<TestimonialCard />
-				<TestimonialCard />
 				<TestimonialCard />
 			</div>
 		</div>

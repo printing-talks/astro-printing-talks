@@ -12,7 +12,7 @@ imageUrls:
 minOrder: 1
 types: []
 availableSizes: ['250', '350']
-isBestSeller: False
+isBestSeller: True
 slug: burger-box
 ---
 

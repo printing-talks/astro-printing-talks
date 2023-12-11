@@ -9,6 +9,6 @@ imageUrls:
   image2: "#"
   image3: "#"
   image4: "#"
-isBestSeller: True
+isBestSeller: False
 slug: acrylic-works
 ---

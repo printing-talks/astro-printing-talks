@@ -11,7 +11,7 @@ imageUrls:
   image4: "#"
 minOrder: 1
 types: ['Special Paper', 'Normal']
-isBestSeller: False
+isBestSeller: True
 slug: business-cards
 ---
 

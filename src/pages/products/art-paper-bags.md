@@ -9,7 +9,7 @@ imageUrls:
   image2: "#"
   image3: "#"
   image4: "#"
-isBestSeller: False
+isBestSeller: True
 slug: art-paper-bags
 ---
 
