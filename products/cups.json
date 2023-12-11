@@ -1,0 +1,15 @@
+{
+  "productName": "New Example Product",
+  "productDescription": "This is an example description\n",
+  "minOrder": 200,
+  "types": [
+    "Insulated",
+    "Cardboard",
+    "PET"
+  ],
+  "availableSizes": [
+    "10 oz",
+    "8 oz"
+  ],
+  "isBestSeller": true
+}
