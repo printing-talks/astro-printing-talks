@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { client } from "../../tina/__generated__/client";
 import TestimonialCard from './TestimonialCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -80,7 +80,9 @@ const TestimonialCarousel = () => {
           ))}
         </Swiper>
       ) : (
-        <p>No testimonials found.</p>
+        <div className='w-[100%] grid place-items-center h-[367px]'>
+          <span className="loading loading-spinner loading-lg"></span>
+        </div>
       )}
     </div>
   );

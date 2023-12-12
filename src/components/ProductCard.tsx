@@ -1,6 +1,3 @@
-import React from 'react';
-import { classNames } from 'tinacms';
-
 interface ProductCardProps {
   image?: string;
   title?: string;
@@ -8,7 +5,6 @@ interface ProductCardProps {
   href?: string;
   className?: string;
 }
-
 
 const ProductCard: React.FC<ProductCardProps> = ({
   image = 'https://placehold.co/600x400', // Replace with actual default image URL

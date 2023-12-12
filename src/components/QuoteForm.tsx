@@ -33,7 +33,7 @@ const schema = yup.object({
   lastName: yup.string().matches(nameRegex, 'Last name should only contain letters').required('Last name is required'),
   email: yup.string().required('Email is required').email('Email is invalid'),
   phone: yup.string()
-    .transform((value, originalValue) => {
+    .transform((originalValue) => {
       return cleanPhone(originalValue);
     })
     .required('Phone number is required').matches(phoneNumberRegex, 'Invalid phone number'),

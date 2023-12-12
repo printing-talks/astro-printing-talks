@@ -58,15 +58,14 @@ async function sendQuotation(req, res) {
 
     const dateTimeString = `${dateString} ${timeString}`;
 
-    const emailList = ['abdulla@printingtalks.ae', 'mohamed@printingtalks.ae', 'mariam@printingtalks.ae', 'abed@printingtalks.ae', 'saleh.lootah2@gmail.com']
+    // const emailList = ['abdulla@printingtalks.ae', 'mohamed@printingtalks.ae', 'mariam@printingtalks.ae', 'abed@printingtalks.ae', 'saleh.lootah2@gmail.com']
 
     const message = {
-        to: 'saleh.lootah2@gmail.com',
+        to: ['abdulla@printingtalks.ae', 'mohamed@printingtalks.ae', 'mariam@printingtalks.ae', 'abed@printingtalks.ae', 'saleh.lootah2@gmail.com'],
         from: 'dev@printingtalks.ae',
         subject: '🚨 New Quotation Request 🚨',
         text: `Date and Time: ${dateTimeString}\nFirst Name: ${firstName}\nLast Name: ${lastName}\nEmail: ${email}\nPhone: ${phone}\nProduct: ${product}\nQuantity: ${quantity}\nArtwork: ${artwork}`,
     };
-
     try {
         await sgMail.send(message);
         console.log(`Successfully Sent Email`);
@@ -78,8 +77,7 @@ async function sendQuotation(req, res) {
 }
 
 app.post('/api/request-quote', async (req, res) => {
-    // sendQuotation(req, res);
-    console.log("WOAH THERE");
+    sendQuotation(req, res);
 });
 
 export default app;

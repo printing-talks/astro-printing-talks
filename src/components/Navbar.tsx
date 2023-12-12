@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface NavbarProps {
   logo?: string;
   links?: Array<{ title: string; href: string }>;

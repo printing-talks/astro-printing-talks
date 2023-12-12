@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface TestimonialCardProps {
   author?: string;
   companyLogo?: string;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { client } from '../../tina/__generated__/client';
 import ProductCard from "./ProductCard";
 
