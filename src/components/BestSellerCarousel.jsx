@@ -74,12 +74,13 @@ const BestSellerCarousel = () => {
             },
             // When window width is >= 768px
             768: {
-              slidesOffsetBefore: 96,
               slidesPerView: 3.2,
+              slidesOffsetBefore: 96,
             },
             // When window width is >= 1024px
             1024: {
               slidesPerView: 4.5,
+              slidesOffsetBefore: 96
             },
           }}
         >

@@ -64,11 +64,23 @@ const TestimonialCarousel = () => {
           spaceBetween={24}
           slidesPerView={1.2}
           breakpoints={{
-            780: { slidesPerView: 2.2 },
             768: { slidesOffsetBefore: 96 },
-            1200: { slidesPerView: 3.2 },
-            1600: { slidesPerView: 4.2 },
-            1800: { slidesPerView: 5.2 },
+            780: {
+              slidesPerView: 2.2,
+              slidesOffsetBefore: 96
+            },
+            1200: {
+              slidesPerView: 3.2,
+              slidesOffsetBefore: 96
+            },
+            1600: {
+              slidesPerView: 4.2,
+              slidesOffsetBefore: 96
+            },
+            1800: {
+              slidesPerView: 5.2,
+              slidesOffsetBefore: 96
+            },
           }}
         >
           {testimonials.map((testimonial, index) => (
