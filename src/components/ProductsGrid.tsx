@@ -94,7 +94,7 @@ const ProductsList: React.FC = () => {
 
   return (
     <>
-      <div className="sm:hidden flex overflow-auto p-4 gap-4 bg-base-200">
+      <div className="sm:hidden sticky top-0 flex overflow-auto p-4 gap-4 bg-base-200">
         {categoryCheckboxes}
       </div>
       <div className="search-results-container flex p-2 md:px-12 md:py-8">

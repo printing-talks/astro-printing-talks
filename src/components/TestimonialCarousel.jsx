@@ -61,25 +61,30 @@ const TestimonialCarousel = () => {
       {testimonials.length > 0 ? (
         <Swiper
           slidesOffsetBefore={16}
+          slidesOffsetAfter={16}
           spaceBetween={24}
           slidesPerView={1.2}
           breakpoints={{
             768: { slidesOffsetBefore: 96 },
             780: {
               slidesPerView: 2.2,
-              slidesOffsetBefore: 96
+              slidesOffsetBefore: 96,
+              slidesOffsetAfter: 96
             },
             1200: {
               slidesPerView: 3.2,
-              slidesOffsetBefore: 96
+              slidesOffsetBefore: 96,
+              slidesOffsetAfter: 96
             },
             1600: {
               slidesPerView: 4.2,
-              slidesOffsetBefore: 96
+              slidesOffsetBefore: 96,
+              slidesOffsetAfter: 96
             },
             1800: {
               slidesPerView: 5.2,
-              slidesOffsetBefore: 96
+              slidesOffsetBefore: 96,
+              slidesOffsetAfter: 96
             },
           }}
         >

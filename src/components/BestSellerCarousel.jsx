@@ -65,6 +65,7 @@ const BestSellerCarousel = () => {
       {products.length > 0 ? (
         <Swiper
           slidesOffsetBefore={16}
+          slidesOffsetAfter={16}
           spaceBetween={24}
           slidesPerView={1.3} // Default number of slides per view
           breakpoints={{
@@ -76,11 +77,13 @@ const BestSellerCarousel = () => {
             768: {
               slidesPerView: 3.2,
               slidesOffsetBefore: 96,
+              slidesOffsetAfter: 96
             },
             // When window width is >= 1024px
             1024: {
               slidesPerView: 4.5,
-              slidesOffsetBefore: 96
+              slidesOffsetBefore: 96,
+              slidesOffsetAfter: 96
             },
           }}
         >
