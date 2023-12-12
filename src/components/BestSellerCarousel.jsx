@@ -86,6 +86,7 @@ const BestSellerCarousel = () => {
           {products.map((product) => (
             <SwiperSlide key={product.id}>
               <ProductCard
+                className='min-w-[250px]'
                 title={product.productName}
                 desc={product.productDescription}
                 image={product.imageUrls?.image1}

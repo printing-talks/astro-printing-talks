@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ logo, links = [], ctaHref, className })
             ))}
           </ul>
         </div>
-        {logo && <img src={logo} alt="Logo" className="h-8" />}
+        {logo && <a type="button" href="/"><img src={logo} alt="Logo" className="h-8" /></a>}
       </div >
 
       <div className="navbar-center hidden lg:flex">
