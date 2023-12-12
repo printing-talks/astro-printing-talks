@@ -10,7 +10,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   testimonialText = 'No testimonial text provided.'
 }) => {
   return (
-    <div className="flex flex-col p-6 min-h-[504px] min-w-[256px] max-w-lg bg-white shadow-lg rounded-lg relative">
+    <div className="flex flex-col p-6 min-h-[504px] min-w-[364px] max-w-lg bg-white shadow-lg rounded-2xl relative">
       {/* Quotation Mark */}
       <div className="absolute -top-3 -left-3 text-4xl text-neutral">&ldquo;</div>
 

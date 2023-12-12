@@ -60,13 +60,15 @@ const TestimonialCarousel = () => {
       {console.log(testimonials)}
       {testimonials.length > 0 ? (
         <Swiper
-          slidesOffsetBefore={96}
+          slidesOffsetBefore={16}
           spaceBetween={24}
-          slidesPerView={1.3}
+          slidesPerView={1.2}
           breakpoints={{
-            640: { slidesPerView: 2.2 },
-            768: { slidesPerView: 4.2 },
-            1024: { slidesPerView: 6.2 },
+            780: { slidesPerView: 2.2 },
+            768: { slidesOffsetBefore: 96 },
+            1200: { slidesPerView: 3.2 },
+            1600: { slidesPerView: 4.2 },
+            1800: { slidesPerView: 5.2 },
           }}
         >
           {testimonials.map((testimonial, index) => (
