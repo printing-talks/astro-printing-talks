@@ -12,32 +12,30 @@ type Props = MarkdownLayoutProps<{
   imageUrls: Array<string>;
   isBestSeller: boolean;
   availableSizes: Array<string>;
+  types: Array<string>;
   slug: string;
 }>;
 const { frontmatter } = Astro.props;
 ---
 
 <Boilerplate title={`PrintingTalks - ${frontmatter.productName}`}>
-  <Navbar
-    logo="/images/printing-talks.svg"
-    links={[
-      { title: "Home", href: "/" },
-      { title: "Products", href: "/product-gallery" },
-    ]}
-    ctaHref="/#request-quote-form"
-  />
   <main>
     <div
-      class="container flex flex-col md:flex-row mx-auto my-16 min-h-[100svh]"
+      class="container p-4 flex flex-col gap-10 md:flex-row mx-auto my-8 sm:my-16 min-h-[95svh]"
     >
-      <div id="product-images" class="flex flex-wrap flex-grow">
+      <div id="product-images" class="flex overflow-auto sm:grid grid-cols-2 gap-2 h-fit">
         {
           Object.values(frontmatter.imageUrls).map(
-            (url) => url && <img src={url} alt="" />,
+            (url) =>
+              url && url !== "" &&
+              <img class="max-w-100%" src={url} alt="" />
+              <img class="max-w-100%" src={url} alt="" />
+              <img class="max-w-100%" src={url} alt="" />
+              <img class="max-w-100%" src={url} alt="" />,
           )
         }
       </div>
-      <div id="product-info" class="flex flex-col pl-12 w-[478px] gap-4">
+      <div id="product-info" class="flex flex-col w-[100%] sm:w-[478px] sm:min-w-[256px] gap-4">
         {
           frontmatter.isBestSeller && (
             <div class="grid place-items-center bg-orange-400 px-3 py-1 rounded-2xl max-w-fit">
@@ -53,12 +51,15 @@ const { frontmatter } = Astro.props;
           <p class="font-bold">Description</p>
           <p>{frontmatter.productDescription}</p>
         </div>
-        <div>
+        {frontmatter.types && frontmatter.types.length > 0 &&
+        (<div>
           <p class="font-bold">Product Types</p>
           <div id="type-selection" class="flex flex-wrap">
             product type component
           </div>
-        </div>
+        </div>)
+        }
+        
         {
           frontmatter.availableSizes &&
             frontmatter.availableSizes.length > 0 && (
@@ -77,5 +78,4 @@ const { frontmatter } = Astro.props;
       </div>
     </div>
   </main>
-  <Footer />
 </Boilerplate>

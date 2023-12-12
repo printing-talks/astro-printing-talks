@@ -4,11 +4,12 @@ interface NavbarProps {
   logo?: string;
   links?: Array<{ title: string; href: string }>;
   ctaHref?: string;
+  className?: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ logo, links = [], ctaHref }) => {
+const Navbar: React.FC<NavbarProps> = ({ logo, links = [], ctaHref, className }) => {
   return (
-    <nav className="navbar sticky top-4 z-30 rounded-lg flex items-center justify-between p-4 backdrop-blur-2xl">
+    <nav className={`navbar sticky top-4 z-30 rounded-lg flex items-center justify-between p-4 backdrop-blur-2xl mx-auto w-[98%] sm:w-[95%] ${className}`}>
       <div className="navbar-start gap-4">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost p-0 lg:hidden">

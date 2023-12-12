@@ -1,37 +1,70 @@
-// BestSellerCarousel.jsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
-import fetchBestSellers from '../fetchBestSellers';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { client } from "../../tina/__generated__/client";
+
+const fetchBestSellers = async () => {
+  try {
+    const filter = {
+      isBestSeller: { eq: true } // Adjusted filter structure
+    };
+
+    const productsResponse = await client.queries.productConnection({ filter });
+    const products = productsResponse.data.productConnection.edges.map(
+      (edge) => edge.node,
+    );
+    console.log(products);
+    return products; // Return the fetched products
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return []; // Return an empty array in case of an error
+  }
+};
 
 const BestSellerCarousel = () => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchContent = async () => {
+      setIsLoading(true);
+      setError(null);
       try {
         const fetchedProducts = await fetchBestSellers();
-        console.log('Fetched Products Inside useEffect:', fetchedProducts); // Debugging
-
         if (Array.isArray(fetchedProducts)) {
           setProducts(fetchedProducts);
         } else {
           console.error('Fetched data is not an array:', fetchedProducts);
+          setError('Invalid data format.');
         }
       } catch (error) {
         console.error('Error fetching best-selling products:', error);
+        setError('Failed to fetch products.');
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    fetchProducts();
+    fetchContent();
   }, []);
+
+  if (isLoading) {
+    return <div className='w-[100%] grid place-items-center h-[367px]'>
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div id="best-sellers-carousel" className="carousel-container">
       {products.length > 0 ? (
         <Swiper
-          // Add Swiper configurations here
+          slidesOffsetBefore={96}
           spaceBetween={24}
           slidesPerView={1.3} // Default number of slides per view
           breakpoints={{
@@ -45,11 +78,9 @@ const BestSellerCarousel = () => {
             },
             // When window width is >= 1024px
             1024: {
-              slidesPerView: 4.2,
+              slidesPerView: 4.5,
             },
           }}
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}
         >
           {products.map((product) => (
             <SwiperSlide key={product.id}>
@@ -57,12 +88,15 @@ const BestSellerCarousel = () => {
                 title={product.productName}
                 desc={product.productDescription}
                 image={product.imageUrls?.image1}
+                href={product.slug}
               />
             </SwiperSlide>
           ))}
         </Swiper>
       ) : (
-        <p>No best selling products found.</p>
+        <div className='w-[100%] grid place-items-center h-[367px]'>
+          <span className="loading loading-spinner loading-lg"></span>
+        </div>
       )}
     </div>
   );

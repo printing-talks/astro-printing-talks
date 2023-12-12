@@ -1,10 +1,12 @@
 import React from 'react';
+import { classNames } from 'tinacms';
 
 interface ProductCardProps {
   image?: string;
   title?: string;
   desc?: string;
   href?: string;
+  className?: string;
 }
 
 
@@ -13,11 +15,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
   title = 'Default Title',
   desc = 'Default description',
   href = '/',
+  className = '',
 }) => {
   return (
-    <a href={`products/${href}`} className='inline-block bg-base-100 shadow-md hover:shadow-lg rounded-lg transition duration-100 min-h-[360px] max-w-[400px] cursor-pointer overflow-hidden flex-shrink-0'>
-      <img src={image} alt={title} className='bg-base-300 w-full object-cover h-[216px]' />
-      <div className='px-6 py-4'>
+    <a href={`products/${href}`} className={`inline-block bg-base-100 shadow-md hover:shadow-lg rounded-lg transition duration-100 min-h-[360px] max-w-[600px] cursor-pointer overflow-hidden flex-shrink-0 ${className}`}>
+      <img loading="lazy" src={image} alt={title} className='bg-base-300 w-full object-cover h-[256px]' />
+      <div className='flex flex-col gap-2 px-8 py-6'>
         <h4>{title}</h4>
         <p className='line-clamp-2' >{desc}</p>
       </div>

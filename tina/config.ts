@@ -62,20 +62,17 @@ export default defineConfig({
                 label: 'Misc',
               },
             ],
-            default: "Misc",
           },
           {
             type: "string",
             name: "productName",
             label: "Product Name",
-            required: true,
-            default: "Default Product Name",
+            required: false,
           },
           {
             type: "string",
             name: "productDescription",
             label: "Product Description",
-            default: "This is a default description for the product. Edit to add specific details.",
           },
           {
             type: "object",
@@ -87,25 +84,21 @@ export default defineConfig({
                 type: "string",
                 name: "image1",
                 label: "Image 1 URL",
-                default: "#",
               },
               {
                 type: "string",
                 name: "image2",
                 label: "Image 2 URL",
-                default: "#",
               },
               {
                 type: "string",
                 name: "image3",
                 label: "Image 3 URL",
-                default: "#",
               },
               {
                 type: "string",
                 name: "image4",
                 label: "Image 4 URL",
-                default: "#",
               },
             ],
           },
@@ -113,38 +106,59 @@ export default defineConfig({
             type: "number",
             name: "minOrder",
             label: "Minimum Order",
-            default: 1,
           },
           {
             type: "string",
             name: "types",
             label: "Types",
+            required: false,
             list: true,
-            default: ["Default Type 1", "Default Type 2"],
           },
           {
             type: "string",
             name: "availableSizes",
             label: "Available Sizes",
             list: true,
-            default: ["Small", "Medium", "Large"],
           },
           {
             type: "boolean",
             name: "isBestSeller",
             label: "Is Best Seller?",
-            default: false,
+            required: false,
           },
           {
             type: "string",
             name: "slug",
             label: "Product URL Slug",
             required: true,
-            default: "/",
           },
         ],
       },
+      {
+        "name": "testimonial",
+        "label": "Testimonials",
+        "path": "/testimonials",
+        "format": "md",
+        "fields": [
+          {
+            "type": "string",
+            "name": "author",
+            "label": "Author",
+            "required": false
+          },
+          {
+            "type": "image",
+            "name": "companyLogo",
+            "label": "Company Logo URL",
+          },
+          {
+            "type": "string",
+            "name": "testimonialText",
+            "label": "Testimonial Text",
+            "required": false
+          }
+        ]
+      }
     ],
-
   },
 });

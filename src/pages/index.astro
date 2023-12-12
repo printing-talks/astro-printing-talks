@@ -1,26 +1,17 @@
 ---
 import Boilerplate from "../layouts/Boilerplate.astro";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer.astro";
 import QuoteForm from "../components/QuoteForm";
 import TestimonialCard from "../components/TestimonialCard";
 import BestSellerCarousel from "../components/BestSellerCarousel";
+import TestimonialCarousel from "../components/TestimonialCarousel";
 ---
 
 <Boilerplate title="Printing Talks">
-	<main class="px-[16px] lg:px-[88px] space-y-[96px]">
+	<main class="space-y-[96px] relative">
 		<!-- Header and navigation -->
-		<Navbar
-			logo="/images/printing-talks.svg"
-			links={[
-				{ title: "Home", href: "/" },
-				{ title: "Products", href: "/product-gallery" },
-			]}
-			ctaHref="/#request-quote-form"
-		/>
 		<div
 			id="hero"
-			class="relative rounded-3xl p-6 h-[80svh] min-h-[632px] max-h-[752px] grid place-items-center overflow-hidden"
+			class="md:mx-24 relative rounded-3xl p-6 h-[80svh] min-h-[632px] max-h-[752px] grid place-items-center overflow-hidden"
 		>
 			<div
 				id="hero-text"
@@ -40,7 +31,7 @@ import BestSellerCarousel from "../components/BestSellerCarousel";
 		</div>
 		<!-- Best Sellers Carousel -->
 		<div id="best-sellers-carousel" class="flex flex-col gap-6">
-			<h3>
+			<h3 class="pl-4 md:pl-24">
 				Our best sellers. <span class="text-neutral font-thin"
 					>Explore our best selling products across a range of categories</span
 				>
@@ -48,20 +39,17 @@ import BestSellerCarousel from "../components/BestSellerCarousel";
 			<BestSellerCarousel client:load />
 		</div>
 		<!-- Testimonials Carousel -->
-		<div id="testimonials-carousel">
-			<h3>
+		<div id="testimonials-carousel" class="flex flex-col gap-6">
+			<h3 class="pl-4 md:pl-24">
 				Testimonials. <span class="text-neutral font-thin"
 					>Trust is at the core of everything we do</span
 				>
 			</h3>
-			<div class="hide-scroll-bar flex gap-4 overflow-auto p-4">
-				<TestimonialCard />
-			</div>
+			<TestimonialCarousel client:load />
 		</div>
-		<QuoteForm client:load />
+		<div class="mx-24">
+			<QuoteForm client:load />
+		</div>
 		<!-- Footer -->
-		<Footer />
 	</main>
 </Boilerplate>
-
-<style></style>
