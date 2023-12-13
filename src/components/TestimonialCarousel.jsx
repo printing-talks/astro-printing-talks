@@ -6,7 +6,10 @@ import 'swiper/css';
 
 const fetchTestimonials = async () => {
   try {
-    const testimonialsResponse = await client.queries.testimonialConnection();
+    const filter = {
+      draft: { eq: false }
+    };
+    const testimonialsResponse = await client.queries.testimonialConnection({ filter });
     const testimonials = testimonialsResponse.data.testimonialConnection.edges.map(
       (edge) => edge.node,
     );
@@ -89,7 +92,7 @@ const TestimonialCarousel = () => {
           }}
         >
           {testimonials.map((testimonial, index) => (
-            <SwiperSlide className='pb-6' key={index}>
+            <SwiperSlide className='py-6' key={index}>
               <TestimonialCard
                 author={testimonial.author}
                 testimonialText={testimonial.testimonialText}

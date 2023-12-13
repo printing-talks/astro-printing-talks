@@ -1,4 +1,5 @@
 ---
+draft: false
 author: Murad Albalooshi
 companyLogo: ''
 testimonialText: >-

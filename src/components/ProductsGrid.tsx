@@ -79,28 +79,20 @@ const ProductsList: React.FC = () => {
   if (error) return <p>{error}</p>;
 
   const categoryLabels = Object.keys(categoryMapping);
-  const categoryCheckboxes = categoryLabels.map(label => (
-    <div className="flex items-center justify-center gap-1 bg-base-100 border rounded-lg px-4 w-fit h-10" key={label}>
-      <input
-        type="checkbox"
-        id={label}
-        onChange={(e) => handleCategoryChange(label, e.target.checked)}
-      />
-      <label>
-        <p className="text-normal">{label.charAt(0).toUpperCase() + label.slice(1)}</p>
-      </label>
-    </div>
+  const categoryCheckboxes = categoryLabels.map((label, index) => (
+    <input key={index} id={label} onChange={(e) => handleCategoryChange(label, e.target.checked)} type="checkbox" aria-label={label.charAt(0).toUpperCase() + label.slice(1)} className="btn btn-ghost btn-accent btn-sm w-fit" />
   ));
 
   return (
     <>
-      <div className="sm:hidden sticky top-0 flex overflow-auto p-4 gap-4 bg-base-200">
+      <div className="sm:hidden sticky top-0 flex overflow-auto px-4 py-8 gap-4 outline outline-1 outline-gray-300 backdrop-blur-2xl">
         {categoryCheckboxes}
       </div>
       <div className="search-results-container flex p-2 md:px-12 md:py-8">
         <aside
-          className="hidden sm:flex flex-col sticky top-28 flex-shrink-0 overflow-x-hidden overflow-y-auto min-w-fit lg:min-w-[256px] max-w-lg h-fit py-6 pr-6"
+          className="hidden sm:flex flex-col sticky top-28 flex-shrink-0 overflow-x-hidden overflow-y-auto min-w-fit lg:min-w-[256px] max-w-lg h-fit py-6 pr-6 gap-1"
         >
+          <p className='text-xl mb-2'>Categories</p>
           {categoryCheckboxes}
         </aside>
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 md:gap-6 min-h-[12rem] w-full">

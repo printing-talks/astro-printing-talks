@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Input from 'react-phone-number-input/input'
 import 'react-phone-number-input/style.css'
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import fetchProducts from '../fetchProducts';
 import * as yup from 'yup';
 import DOMPurify from 'dompurify';
 
@@ -50,6 +51,23 @@ function QuoteForm() {
   const [product, setProduct] = useState('')
   const [artwork, setArtwork] = useState('')
   const [quantity, setQuantity] = useState('')
+  const [productList, setProductList] = useState([])
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const fetchedProducts = await fetchProducts();
+        if (Array.isArray(fetchedProducts)) {
+          setProductList(fetchedProducts);
+        } else {
+          console.error('Fetched data is not an array:', fetchedProducts);
+        }
+      } catch (error) {
+        console.error('Error fetching best-selling products:', error);
+      }
+    };
+    fetchContent();
+  }, []);
 
   const handlePhoneChange = (value: string) => {
     if (typeof value === 'string') {
@@ -58,7 +76,6 @@ function QuoteForm() {
       // Handle the case where value is not a valid number (or is not a string)
     }
   };
-
 
   // Initialize useForm
   const { register, handleSubmit, reset, formState: { errors } } = useForm<IFormInput>({
@@ -179,10 +196,10 @@ function QuoteForm() {
           className={`select select-bordered text-base-content w-full ${errors.product ? 'select-error' : ''}`}
           {...register('product')}
           required value={product} onChange={(e) => setProduct(e.target.value)}>
-          <option disabled >Select one</option>
-          <option value="1">Product 1</option>
-          <option value="2">Product 2</option>
-          <option value="3">Product 3</option>
+          <option value='' disabled >Select one</option>
+          {productList.map((product, index) => (
+            <option key={index} value={product.productName}>{product.productName}</option>
+          ))}
         </select>
         {errors.product &&
           <div className="label">
@@ -195,7 +212,7 @@ function QuoteForm() {
         <select
           className={`select select-bordered text-base-content w-full ${errors.artwork ? 'select-error' : ''}`}
           {...register('artwork')} required value={artwork} onChange={(e) => setArtwork(e.target.value)}>
-          <option disabled>Select one</option>
+          <option value='' disabled>Select one</option>
           <option value="No">No</option>
           <option value="Yes">Yes</option>
         </select>
@@ -211,10 +228,10 @@ function QuoteForm() {
           className={`select select-bordered text-base-content w-full ${errors.quantity ? 'select-error' : ''}`}
           {...register('quantity')} required value={quantity}
           onChange={(e) => setQuantity(e.target.value)}>
-          <option disabled>Select one</option>
-          <option value="Small">Small</option>
-          <option value="Medium">Medium</option>
-          <option value="Large">Large</option>
+          <option value='' disabled>Select one</option>
+          <option value="less-than-1000">Less than 1,000</option>
+          <option value="1000-4000">1,000 - 4,000</option>
+          <option value="4000+">4,000 or more</option>
         </select>
         {errors.quantity &&
           <div className="label">

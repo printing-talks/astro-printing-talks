@@ -42,24 +42,24 @@ export default defineConfig({
             list: true,
             options: [
               {
-                value: 'Food Packaging',
-                label: 'Food Packaging',
+                value: "Food Packaging",
+                label: "Food Packaging",
               },
               {
-                value: 'Retail and Gifts',
-                label: 'Retail and Gifts',
+                value: "Retail and Gifts",
+                label: "Retail and Gifts",
               }, {
-                value: 'Marketing Materials',
-                label: 'Marketing Materials',
+                value: "Marketing Materials",
+                label: "Marketing Materials",
               }, {
-                value: 'Office Supplies',
-                label: 'Office Supplies',
+                value: "Office Supplies",
+                label: "Office Supplies",
               }, {
-                value: 'Speciality',
-                label: 'Speciality',
+                value: "Speciality",
+                label: "Speciality",
               }, {
-                value: 'Misc',
-                label: 'Misc',
+                value: "Misc",
+                label: "Misc",
               },
             ],
           },
@@ -140,6 +140,13 @@ export default defineConfig({
         "path": "/testimonials",
         "format": "md",
         "fields": [
+          {
+            "name": "draft",
+            "label": "Draft",
+            "type": "boolean",
+            "required": true,
+            "description": "If this is checked the testimonial will not be published",
+          },
           {
             "type": "string",
             "name": "author",
