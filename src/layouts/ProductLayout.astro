@@ -21,7 +21,7 @@ const { frontmatter } = Astro.props;
     <div
       class="container p-4 flex flex-col gap-10 md:flex-row mx-auto my-8 sm:my-16 min-h-[95svh]"
     >
-      <div id="product-images" class="flex overflow-auto sm:grid grid-cols-2 gap-2 h-fit">
+      <div id="product-images" class="flex overflow-auto sm:grid grid-cols-2 gap-2 h-fit max-w-[800px]">
         {
           Object.values(frontmatter.imageUrls).map(
             (url) =>

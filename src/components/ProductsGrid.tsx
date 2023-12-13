@@ -80,7 +80,7 @@ const ProductsList: React.FC = () => {
 
   const categoryLabels = Object.keys(categoryMapping);
   const categoryCheckboxes = categoryLabels.map((label, index) => (
-    <input key={index} id={label} onChange={(e) => handleCategoryChange(label, e.target.checked)} type="checkbox" aria-label={label.charAt(0).toUpperCase() + label.slice(1)} className="btn btn-ghost btn-accent btn-sm w-fit" />
+    <input key={index} id={label} onChange={(e) => handleCategoryChange(label, e.target.checked)} type="checkbox" aria-label={label.charAt(0).toUpperCase() + label.slice(1)} className="btn btn-ghost btn-accent btn-sm font-medium w-fit" />
   ));
 
   return (
@@ -92,7 +92,7 @@ const ProductsList: React.FC = () => {
         <aside
           className="hidden sm:flex flex-col sticky top-28 flex-shrink-0 overflow-x-hidden overflow-y-auto min-w-fit lg:min-w-[256px] max-w-lg h-fit py-6 pr-6 gap-1"
         >
-          <p className='text-xl mb-2'>Categories</p>
+          <p className='text-xl font-medium mb-2'>Categories</p>
           {categoryCheckboxes}
         </aside>
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 md:gap-6 min-h-[12rem] w-full">
