@@ -83,8 +83,7 @@ const ProductsList: React.FC = () => {
   ));
 
   if (error) {
-    return
-    <div className='w-[100%] grid place-items-center h-[367px]'>
+    return <div className='w-[100%] grid place-items-center h-[367px]'>
       <span className="loading loading-spinner loading-lg"></span>
     </div>
   }

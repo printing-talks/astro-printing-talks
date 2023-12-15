@@ -6,13 +6,15 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
+  integrations: [tailwind(), react()],
+  output: "server",
   adapter: vercel({
-    speedInsights: {
-      enabled: true,
-    },
     webAnalytics: {
       enabled: true,
     },
+    speedInsights: {
+      enabled: true,
+    },
   }),
+
 });
