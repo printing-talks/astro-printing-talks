@@ -55,7 +55,9 @@ const TestimonialCarousel = () => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className='w-[100%] grid place-items-center h-[367px]'>
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>;
   }
 
   return (

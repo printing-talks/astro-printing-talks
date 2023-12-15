@@ -82,10 +82,11 @@ const ProductsList: React.FC = () => {
     <input key={index} id={label} onChange={(e) => handleCategoryChange(label, e.target.checked)} type="checkbox" aria-label={label.charAt(0).toUpperCase() + label.slice(1)} className="btn btn-ghost btn-accent btn-sm font-medium w-fit" />
   ));
 
-
-
   if (error) {
-    return <div>Error: {error}</div>;
+    return
+    <div className='w-[100%] grid place-items-center h-[367px]'>
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>
   }
 
   return (
