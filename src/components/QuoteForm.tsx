@@ -83,31 +83,36 @@ function QuoteForm() {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const submissionData = {
-      firstName: DOMPurify.sanitize(data.firstName),
-      lastName: DOMPurify.sanitize(data.lastName),
-      email: DOMPurify.sanitize(data.email),
-      phone: DOMPurify.sanitize(data.phone),
-      product: DOMPurify.sanitize(data.product),
-      artwork: DOMPurify.sanitize(data.artwork),
-      quantity: DOMPurify.sanitize(data.quantity),
-    };
+    // Sanitize input data using DOMPurify
+    const sanitizedData = Object.keys(data).reduce((acc, key) => {
+      acc[key] = DOMPurify.sanitize(data[key]);
+      return acc;
+    }, {});
+
     try {
+      // Send the sanitized data to the server
       const response = await fetch('/api/request-quote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(submissionData),
+        body: JSON.stringify(sanitizedData),
       });
+
+      // Check for response.ok to ensure the request was successful
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      // Assuming the server sends a meaningful response, handle it here
       const result = await response.json();
-      // Provide feedback to the user
-      alert("Form submitted successfully!");
-      reset({ firstName: '', lastName: '', email: '', phone: '' })
+      // Example: Display a success message from the server's response
+      alert(`Form submitted successfully! Message: ${result.message}`);
+
+      // Reset the form fields
+      reset();
     } catch (error) {
       console.error('Error submitting form:', error);
       // Handle error - display error message to user
+      alert(`Error submitting form: ${error.message}`);
     }
   };
 
@@ -132,6 +137,8 @@ function QuoteForm() {
           {...register('firstName')}
           required
           aria-describedby={errors.firstName ? 'firstName-error' : null}
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
         />
         {errors.firstName &&
           <div id="firstName-error" className="label">
