@@ -37,7 +37,6 @@ const ProductsList: React.FC = () => {
       try {
         const productsResponse = await client.queries.productConnection();
         const products = productsResponse.data.productConnection.edges.map((edge) => edge.node);
-        console.log(products);
         setProducts(products);
       } catch (error) {
         console.error('Error fetching products:', error);

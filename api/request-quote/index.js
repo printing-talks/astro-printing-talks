@@ -58,10 +58,8 @@ async function sendQuotation(req, res) {
 
     const dateTimeString = `${dateString} ${timeString}`;
 
-    // const emailList = ['abdulla@printingtalks.ae', 'mohamed@printingtalks.ae', 'mariam@printingtalks.ae', 'abed@printingtalks.ae', 'saleh.lootah2@gmail.com']
-
     const message = {
-        to: ['abdulla@printingtalks.ae', 'mohamed@printingtalks.ae', 'mariam@printingtalks.ae', 'abed@printingtalks.ae', 'saleh.lootah2@gmail.com'],
+        to: ['abdulla@printingtalks.ae', 'mohamed@printingtalks.ae', 'mariam@printingtalks.ae', 'abed@printingtalks.ae'],
         from: 'dev@printingtalks.ae',
         subject: '🚨 New Quotation Request 🚨',
         text: `Date and Time: ${dateTimeString}\nFirst Name: ${firstName}\nLast Name: ${lastName}\nEmail: ${email}\nPhone: ${phone}\nProduct: ${product}\nQuantity: ${quantity}\nArtwork: ${artwork}`,

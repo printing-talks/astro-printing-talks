@@ -13,7 +13,6 @@ const fetchTestimonials = async () => {
     const testimonials = testimonialsResponse.data.testimonialConnection.edges.map(
       (edge) => edge.node,
     );
-    console.log(testimonials);
     return testimonials;
   } catch (error) {
     console.error("Error fetching testimonials:", error);
@@ -62,7 +61,6 @@ const TestimonialCarousel = () => {
 
   return (
     <div id="testimonial-carousel" className="carousel-container py-6">
-      {console.log(testimonials)}
       {testimonials.length > 0 ? (
         <Swiper
           slidesOffsetBefore={16}

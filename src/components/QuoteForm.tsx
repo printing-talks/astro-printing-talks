@@ -102,7 +102,6 @@ function QuoteForm() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const result = await response.json();
-      console.log('Response:', result);
       // Provide feedback to the user
       alert("Form submitted successfully!");
       reset({ firstName: '', lastName: '', email: '', phone: '' })
@@ -121,120 +120,138 @@ function QuoteForm() {
       <p className="text-lg lg:text-xl">Get a custom quote for boxes and more.</p>
 
       <form id="request-quote-form" className="form-control w-full max-w-xs" onSubmit={handleSubmit(onSubmit)}>
-
-        <label className="label">
+        {/* First Name */}
+        <label htmlFor="firstName" className="label">
           <span className="label-text text-accent-content">First Name</span>
         </label>
         <input
+          id="firstName"
           type="text"
           placeholder="First Name"
           className={`input input-bordered text-base-content w-full ${errors.firstName ? 'input-error' : ''}`}
           {...register('firstName')}
           required
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          aria-describedby={errors.firstName ? 'firstName-error' : null}
         />
         {errors.firstName &&
-          <div className="label">
+          <div id="firstName-error" className="label">
             <span className="label-text-alt text-accent-content">{errors.firstName.message}</span>
           </div>}
-
-        <label className="label">
+        {/* Last Name */}
+        <label htmlFor="lastName" className="label">
           <span className="label-text text-accent-content">Last Name</span>
         </label>
         <input
+          id="lastName"
           type="text"
           placeholder="Last Name"
           className={`input input-bordered text-base-content w-full ${errors.lastName ? 'input-error' : ''}`}
           {...register('lastName')}
           required
+          aria-describedby={errors.lastName ? 'lastName-error' : null}
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
         />
         {errors.lastName &&
-          <div className="label">
+          <div id="lastName-error" className="label">
             <span className="label-text-alt text-accent-content">{errors.lastName.message}</span>
           </div>}
-
-        <label className="label">
+        {/* Email Field */}
+        <label htmlFor="email" className="label">
           <span className="label-text text-accent-content">Email</span>
         </label>
         <input
+          id="email"
           type="email"
           placeholder="Email"
           className={`input input-bordered text-base-content w-full ${errors.email ? 'input-error' : ''}`}
           {...register('email')}
           required
+          aria-describedby={errors.email ? 'email-error' : null}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         {errors.email &&
-          <div className="label">
+          <div id="email-error" className="label">
             <span className="label-text-alt text-accent-content">{errors.email.message}</span>
           </div>}
-
-        <label className="label">
+        {/* Phone Field */}
+        <label htmlFor="phone" className="label">
           <span className="label-text text-accent-content">Phone Number</span>
         </label>
         <Input
+          id="phone"
+          type="tel"
           placeholder="+971 12 345 6789"
           value={phone}
           className={`input input-bordered text-base-content w-full ${errors.phone ? 'input-error' : ''}`}
           {...register('phone')}
+          aria-describedby={errors.phone ? 'phone-error' : null}
           onChange={handlePhoneChange}
         />
         {errors.phone &&
-          <div className="label">
+          <div id="phone-error" className="label">
             <span className="label-text-alt text-accent-content">{errors.phone.message}</span>
           </div>}
 
-        <label className="label">
-          <span className="label-text text-accent-content"
-          >What packaging products are you interested in?</span>
+        {/* Product Select Field */}
+        <label htmlFor="product" className="label">
+          <span className="label-text text-accent-content">What product are you interested in?</span>
         </label>
         <select
+          id="product"
           className={`select select-bordered text-base-content w-full ${errors.product ? 'select-error' : ''}`}
           {...register('product')}
-          required value={product} onChange={(e) => setProduct(e.target.value)}>
+          required value={product} onChange={(e) => setProduct(e.target.value)}
+          aria-describedby={errors.product ? 'product-error' : null}
+        >
           <option value='' disabled >Select one</option>
           {productList.map((product, index) => (
             <option key={index} value={product.productName}>{product.productName}</option>
           ))}
         </select>
         {errors.product &&
-          <div className="label">
+          <div id="product-error" className="label">
             <span className="label-text-alt text-accent-content">{errors.product.message}</span>
           </div>}
 
-        <label className="label">
+        {/* Artwork Select Field */}
+        <label htmlFor="artwork" className="label">
           <span className="label-text text-accent-content">Do you have artwork?</span>
         </label>
         <select
+          id="artwork"
           className={`select select-bordered text-base-content w-full ${errors.artwork ? 'select-error' : ''}`}
-          {...register('artwork')} required value={artwork} onChange={(e) => setArtwork(e.target.value)}>
+          {...register('artwork')} required value={artwork} onChange={(e) => setArtwork(e.target.value)}
+          aria-describedby={errors.artwork ? 'artwork-error' : null}
+        >
           <option value='' disabled>Select one</option>
           <option value="No">No</option>
           <option value="Yes">Yes</option>
         </select>
         {errors.artwork &&
-          <div className="label">
+          <div id="artwork-error" className="label">
             <span className="label-text-alt text-accent-content">{errors.artwork.message}</span>
           </div>}
 
-        <label className="label">
+        {/* Quantity Select Field */}
+        <label htmlFor="quantity" className="label">
           <span className="label-text text-accent-content">Quantity</span>
         </label>
         <select
+          id="quantity"
           className={`select select-bordered text-base-content w-full ${errors.quantity ? 'select-error' : ''}`}
           {...register('quantity')} required value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}>
+          onChange={(e) => setQuantity(e.target.value)}
+          aria-describedby={errors.quantity ? 'quantity-error' : null}
+        >
           <option value='' disabled>Select one</option>
           <option value="less-than-1000">Less than 1,000</option>
           <option value="1000-4000">1,000 - 4,000</option>
           <option value="4000+">4,000 or more</option>
         </select>
         {errors.quantity &&
-          <div className="label">
+          <div id="quantity-error" className="label">
             <span className="label-text-alt text-accent-content">{errors.quantity.message}</span>
           </div>}
 

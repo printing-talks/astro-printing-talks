@@ -3,22 +3,25 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer.astro";
 interface Props {
 	title: string;
+	description: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <html data-theme="printingTalks" lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta
-			name="description"
-			content="Printing Talks is a locally owned packaging & printing company that provides high quality procucts & timely services!"
-		/>
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={Astro.request.url} />
 		<title>{title}</title>
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="/favicon.svg" />
+		<meta property="og:url" content={Astro.request.url} />
 	</head>
 	<body class="hide-scroll-bar">
 		<Navbar

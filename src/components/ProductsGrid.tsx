@@ -83,7 +83,7 @@ const ProductsList: React.FC = () => {
   ));
 
   if (error) {
-    return <div className='w-[100%] grid place-items-center h-[367px]'>
+    return <div className='col-span-full grid place-items-center h-[367px]'>
       <span className="loading loading-spinner loading-lg"></span>
     </div>
   }
@@ -100,9 +100,6 @@ const ProductsList: React.FC = () => {
           <p className='text-xl font-medium mb-2'>Categories</p>
           {categoryCheckboxes}
         </aside>
-        {isLoading &&
-          <span className="loading loading-spinner loading-lg"></span>
-        }
         <div className={` ${isLoading && "invisible"} grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 md:gap-6 min-h-[12rem] w-full`}>
           {filteredProducts.map((product, index) => (
             <ProductCard key={index} href={product.slug} title={product.productName} desc={product.productDescription} image={product.imageUrls.image1} />

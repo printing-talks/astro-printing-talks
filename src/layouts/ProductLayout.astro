@@ -16,7 +16,7 @@ type Props = MarkdownLayoutProps<{
 const { frontmatter } = Astro.props;
 ---
 
-<Boilerplate title={`PrintingTalks - ${frontmatter.productName}`}>
+<Boilerplate title={`PrintingTalks - ${frontmatter.productName}`} description={`More information about ${frontmatter.productName}`}>
   <main>
     <div
       class="container p-4 flex flex-col gap-10 md:flex-row mx-auto my-8 sm:my-16 min-h-[95svh]"

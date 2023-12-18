@@ -6,6 +6,7 @@
     "dev": "tinacms dev -c \"astro dev --host\"",
     "start": "astro dev",
     "build": "astro check && tinacms build && astro build",
+    "sitemap": "node generate-sitemap.js",
     "preview": "astro preview",
     "astro": "astro"
   },
