@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "tinacms dev -c \"astro dev --host\"",
     "start": "astro dev",
-    "build": "astro check && tinacms build && astro build",
-    "sitemap": "node generate-sitemap.js",
+    "build": "astro check && node generateSitemap.js && tinacms build && astro build",
+    "sitemap": "node generateSitemap.js",
     "preview": "astro preview",
     "astro": "astro"
   },

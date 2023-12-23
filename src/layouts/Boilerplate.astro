@@ -9,6 +9,7 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
+<!doctype html>
 <html data-theme="printingTalks" lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -22,6 +23,15 @@ const { title, description } = Astro.props;
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content="/favicon.svg" />
 		<meta property="og:url" content={Astro.request.url} />
+		<meta property="og:type" content="website" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="/favicon.svg" />
+		<meta
+			name="keywords"
+			content="Printing, Packaging, Abu Dhabi, Custom Solutions, Eco-Friendly, Digital Printing, Offset Printing, Business Cards, Brochures, Banners, Promotional Items, Cups, Boxes, Cardboard, Cardboard Boxes, Gifts, Packaging Accessories"
+		/>
 	</head>
 	<body class="hide-scroll-bar">
 		<Navbar
@@ -114,6 +124,63 @@ const { title, description } = Astro.props;
 	}
 	.image-scale {
 		transform: scale(1.05);
+	}
+
+	article h1,
+	article h2,
+	article h3,
+	article h4,
+	article h5,
+	article h6 {
+		font-family: "Arial", sans-serif; /* Sans-serif font for headings */
+		color: #000; /* Black for headings */
+		margin-top: 1.2em; /* Spacing above headings */
+		margin-bottom: 0.6em; /* Spacing below headings */
+	}
+
+	article p {
+		margin-bottom: 1em; /* Spacing below paragraphs */
+	}
+
+	article ul,
+	article ol {
+		margin-left: 20px; /* Indent lists */
+		margin-bottom: 1em; /* Spacing below lists */
+	}
+
+	article li {
+		margin-bottom: 0.5em; /* Spacing between list items */
+	}
+
+	article a {
+		color: #0066cc; /* Color for links */
+		text-decoration: none; /* No underline */
+	}
+
+	article a:hover {
+		text-decoration: underline; /* Underline on hover for links */
+	}
+
+	article img {
+		max-width: 100%; /* Ensure images are not wider than the article */
+		height: auto; /* Maintain aspect ratio */
+		margin-top: 1em; /* Spacing above images */
+		margin-bottom: 1em; /* Spacing below images */
+	}
+
+	/* Small text such as captions or references */
+	article .small-text {
+		font-size: 0.8em; /* Smaller font size */
+		color: #666; /* Lighter color for less emphasis */
+	}
+
+	/* Styling for block quotes */
+	article blockquote {
+		font-style: italic; /* Italicize quotes */
+		margin-left: 20px; /* Indent block quotes */
+		margin-right: 20px; /* Indent block quotes */
+		padding-left: 15px; /* Padding for aesthetic */
+		border-left: 3px solid #ccc; /* Left border for quotes */
 	}
 	@media only screen and (max-width: 600px) {
 		html {

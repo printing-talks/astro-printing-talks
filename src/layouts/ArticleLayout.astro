@@ -1,0 +1,70 @@
+---
+import Boilerplate from "../layouts/Boilerplate.astro";
+import type { MarkdownLayoutProps } from "astro";
+
+type Props = MarkdownLayoutProps<{
+  title: string;
+  date: string;
+  author: string;
+  description: string;
+  categories: Array<string>;
+  tags: Array<string>;
+  draft: boolean;
+  thumbnail: string;
+  body: string;
+}>;
+// Function to format the date
+const formatDate = (dateString: string | number | Date) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString(); // Formats the date to a readable string without time
+};
+const { frontmatter } = Astro.props;
+---
+
+<Boilerplate
+  title={`Printing Talks - ${frontmatter.title}`}
+  description={`${frontmatter.title} - An insightful read by ${frontmatter.author}. Discover engaging topics and trends in our latest articles.`}
+>
+  <main>
+    <div class="container p-4 mx-auto my-8 sm:my-16 min-h-[95vh]">
+      {
+        frontmatter.thumbnail && (
+          <img
+            class="w-80 h-auto mb-4"
+            src={frontmatter.thumbnail}
+            alt={`Thumbnail of ${frontmatter.title}`}
+          />
+        )
+      }
+      <article class="prose lg:prose-xl">
+        <h1>{frontmatter.title}</h1>
+        <p class="text-gray-600">
+          <small>{formatDate(frontmatter.date)} | By {frontmatter.author}</small
+          >
+        </p>
+        <p>{frontmatter.description}</p>
+
+        {
+          frontmatter.categories && frontmatter.categories.length > 0 && (
+            <ul class="flex flex-wrap gap-2">
+              {frontmatter.categories.map((category) => (
+                <li class="bg-gray-200 rounded-full px-3 py-1">{category}</li>
+              ))}
+            </ul>
+          )
+        }
+
+        {
+          frontmatter.tags && frontmatter.tags.length > 0 && (
+            <ul class="flex flex-wrap gap-2">
+              {frontmatter.tags.map((tag) => (
+                <li class="bg-blue-200 rounded-full px-3 py-1">{tag}</li>
+              ))}
+            </ul>
+          )
+        }
+        <slot />
+      </article>
+    </div>
+  </main>
+</Boilerplate>

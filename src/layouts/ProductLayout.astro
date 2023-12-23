@@ -16,7 +16,9 @@ type Props = MarkdownLayoutProps<{
 const { frontmatter } = Astro.props;
 ---
 
-<Boilerplate title={`PrintingTalks - ${frontmatter.productName}`} description={`More information about ${frontmatter.productName}`}>
+<Boilerplate 
+    title={`Printing Talks - ${frontmatter.productName}`} 
+    description={` ${frontmatter.productName} from Printing Talks, your eco-innovative solution in Abu Dhabi. Experience the fusion of premium quality and environmental stewardship with our products, made from top-grade, recyclable materials. Ideal for businesses and individuals seeking eco-friendly printing options that don't compromise on style or durability. Learn about our customizable designs tailored to your needs, and the competitive advantages of our bulk ordering options. Elevate your brand with ${frontmatter.productName}, where green meets greatness.`}>
   <main>
     <div
       class="container p-4 flex flex-col gap-10 md:flex-row mx-auto my-8 sm:my-16 min-h-[95svh]"

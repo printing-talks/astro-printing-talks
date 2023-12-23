@@ -1,0 +1,54 @@
+---
+import Boilerplate from "../layouts/Boilerplate.astro";
+---
+
+<Boilerplate
+  title="Printing Talks - Articles"
+  description="Explore the Printing Talks articles"
+>
+  <div class="flex flex-col">
+    <div
+      class="top-banner flex flex-col h-[12rem] md:h-[14rem] justify-center gap-1 self-stretch border-b border-solid p-4 md:px-12"
+    >
+      <h4 class="font-medium text-3xl">Articles</h4>
+      <p class="text-neutral text-xl">
+        Learn more about our work and the services we provide.
+      </p>
+    </div>
+
+    <div class="container mx-auto space-y-6 p-8">
+      <div class="card lg:card-side bg-base-100 shadow-xl">
+        <figure>
+          <img
+            src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
+            alt="Album"
+          />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">New album is released!</h2>
+          <p>Click the button to listen on Spotiwhy app.</p>
+          <div class="card-actions justify-end">
+            <button class="btn btn-primary">Listen</button>
+          </div>
+        </div>
+      </div>
+      <div class="card lg:card-side bg-base-100 shadow-xl">
+        <figure>
+          <img
+            src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
+            alt="Album"
+          />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">New album is released!</h2>
+          <p>Click the button to listen on Spotiwhy app.</p>
+          <div class="card-actions justify-end">
+            <a href="/intro-article">
+              <button class="btn btn-primary">Listen</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Boilerplate>
