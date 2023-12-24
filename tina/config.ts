@@ -35,8 +35,6 @@ export default defineConfig({
         format: "md",
         ui: {
           beforeSubmit: async ({
-            form,   // The form instance
-            cms,    // The instance of TinaCMS
             values, // The current values of the form
           }: {
             form: Form,
