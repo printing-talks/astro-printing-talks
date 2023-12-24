@@ -12,14 +12,20 @@
  *  - `buttonText` (string): Text to be displayed on the button.
  *     This could be a call-to-action or any relevant label.
  */
-function ResponsiveCard(props) {
-  // Destructuring the props to allow custom content
-  const { imageUrl, title, content, buttonText, slug } = props;
+interface ResponsiveCardProps {
+  imageUrl: string | null;
+  title: string;
+  content: string | null;
+  buttonText: string;
+  slug: string;
+}
 
+const ResponsiveCard: React.FC<ResponsiveCardProps> = ({ imageUrl, title, content, buttonText, slug }) => {
+  const processedImageUrl = imageUrl ?? undefined;
   return (
     <a href={`articles/${slug}`} className="product-card relative flex flex-col bg-base-100 shadow-md hover:shadow-xl rounded-xl transition duration-400 min-h-[256px] cursor-pointer overflow-hidden flex-shrink-0 md:flex-row md:max-h-[256px]">
       <figure className="max-h-[256px] md:max-w-md">
-        <img className="w-full h-full max-h-[256px] md:max-h-[999px] object-contain" src={imageUrl} alt={title} />
+        <img className="w-full h-full max-h-[256px] md:max-h-[999px] object-contain" src={processedImageUrl} alt={title} />
       </figure>
       <div className="flex flex-col p-6 justify-center">
         <h4 className="line-clamp-2">{title}</h4>
@@ -27,7 +33,6 @@ function ResponsiveCard(props) {
       </div>
     </a>
   );
-}
+};
 
-// Exporting the component for use in other parts of the application
 export default ResponsiveCard;

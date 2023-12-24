@@ -2,20 +2,35 @@
 import { client } from "../../tina/__generated__/client";
 import ResponsiveCard from "../components/ResponsiveCard";
 import Boilerplate from "../layouts/Boilerplate.astro";
-
+interface Article {
+  thumbnail: string | null;
+  date: string | null;
+  author: string | null;
+  description: string | null;
+  categories: (string | null)[] | null;
+  title: string;
+  slug: string;
+}
 async function fetchArticles() {
-  let articles = [];
+  let articles: Article[] = [];
   try {
     const articlesResponse = await client.queries.articleConnection();
-    articles = articlesResponse.data.articleConnection.edges.map((edge) => ({
-      thumbnail: edge.node.thumbnail,
-      date: edge.node.date,
-      author: edge.node.author,
-      description: edge.node.description,
-      categories: edge.node.categories,
-      title: edge.node.title,
-      slug: edge.node.slug,
-    }));
+    const edges = articlesResponse.data.articleConnection?.edges ?? [];
+
+    articles = edges.reduce((acc, edge) => {
+      if (edge && edge.node) {
+        acc.push({
+          thumbnail: edge.node.thumbnail ?? null,
+          date: edge.node.date ?? null,
+          author: edge.node.author ?? null,
+          description: edge.node.description ?? null,
+          categories: edge.node.categories ?? null,
+          title: edge.node.title ?? "",
+          slug: edge.node.slug ?? "",
+        });
+      }
+      return acc;
+    }, [] as Article[]);
   } catch (error) {
     console.error("Error fetching articles:", error);
     // Handle error as appropriate
@@ -45,7 +60,6 @@ const articles = await fetchArticles();
       {
         articles.map((article) => (
           <ResponsiveCard
-            key={article.slug}
             imageUrl={article.thumbnail}
             title={article.title}
             content={article.description}
