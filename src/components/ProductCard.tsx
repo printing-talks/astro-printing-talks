@@ -25,7 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           }
         `}
       </style>
-      <a href={`products/${href}`} className={`product-card inline-block bg-base-100 shadow-md hover:shadow-xl rounded-lg transition duration-400 min-h-[360px] max-w- [600px] cursor-pointer overflow-hidden flex-shrink-0 ${className}`}>
+      <a href={`products/${href}`} className={`product-card inline-block bg-base-100 shadow-md hover:shadow-xl rounded-lg transition duration-400 min-h-[360px] max-w-[600px] cursor-pointer overflow-hidden flex-shrink-0 ${className}`}>
         <img loading="lazy" src={image} alt={title} className='bg-base-300 w-full object-cover h-[256px] image-scale' />
         <div className='flex flex-col gap-2 px-8 py-6'>
           <h4>{title}</h4>

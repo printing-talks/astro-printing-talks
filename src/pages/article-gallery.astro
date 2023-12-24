@@ -1,5 +1,30 @@
 ---
+import { client } from "../../tina/__generated__/client";
+import ResponsiveCard from "../components/ResponsiveCard";
 import Boilerplate from "../layouts/Boilerplate.astro";
+
+async function fetchArticles() {
+  let articles = [];
+  try {
+    const articlesResponse = await client.queries.articleConnection();
+    articles = articlesResponse.data.articleConnection.edges.map((edge) => ({
+      thumbnail: edge.node.thumbnail,
+      date: edge.node.date,
+      author: edge.node.author,
+      description: edge.node.description,
+      categories: edge.node.categories,
+      title: edge.node.title,
+      slug: edge.node.slug,
+    }));
+  } catch (error) {
+    console.error("Error fetching articles:", error);
+    // Handle error as appropriate
+  }
+  return articles;
+}
+
+// Fetch articles during build
+const articles = await fetchArticles();
 ---
 
 <Boilerplate
@@ -17,38 +42,18 @@ import Boilerplate from "../layouts/Boilerplate.astro";
     </div>
 
     <div class="container mx-auto space-y-6 p-8">
-      <div class="card lg:card-side bg-base-100 shadow-xl">
-        <figure>
-          <img
-            src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
-            alt="Album"
+      {
+        articles.map((article) => (
+          <ResponsiveCard
+            key={article.slug}
+            imageUrl={article.thumbnail}
+            title={article.title}
+            content={article.description}
+            buttonText="Read"
+            slug={article.slug}
           />
-        </figure>
-        <div class="card-body">
-          <h2 class="card-title">New album is released!</h2>
-          <p>Click the button to listen on Spotiwhy app.</p>
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary">Listen</button>
-          </div>
-        </div>
-      </div>
-      <div class="card lg:card-side bg-base-100 shadow-xl">
-        <figure>
-          <img
-            src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
-            alt="Album"
-          />
-        </figure>
-        <div class="card-body">
-          <h2 class="card-title">New album is released!</h2>
-          <p>Click the button to listen on Spotiwhy app.</p>
-          <div class="card-actions justify-end">
-            <a href="/intro-article">
-              <button class="btn btn-primary">Listen</button>
-            </a>
-          </div>
-        </div>
-      </div>
+        ))
+      }
     </div>
   </div>
 </Boilerplate>

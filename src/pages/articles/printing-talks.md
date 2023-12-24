@@ -9,7 +9,7 @@ description: >-
   is not just a business; it's a commitment to sustainability, quality, and
   community.
 draft: false
-thumbnail: /images/quality.png
+thumbnail: /images/printing-talks.png
 slug: printing-talks
 layout: ../../layouts/ArticleLayout.astro
 ---
