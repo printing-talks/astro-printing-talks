@@ -1,7 +1,7 @@
 ---
 title: 'Printing Talks: Pioneering Sustainable Packaging in Abu Dhabi'
 date: 2023-12-22T20:00:00.000Z
-author: Saleh
+author: Abdulla
 description: >-
   In the bustling city of Abu Dhabi, where innovation meets tradition, one
   company is making waves in the world of packaging—Printing Talks. As an
