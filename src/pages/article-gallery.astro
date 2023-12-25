@@ -1,45 +1,6 @@
 ---
-import { client } from "../../tina/__generated__/client";
-import ResponsiveCard from "../components/ResponsiveCard";
+import ArticleList from "../components/ArticleList";
 import Boilerplate from "../layouts/Boilerplate.astro";
-interface Article {
-  thumbnail: string | null;
-  date: string | null;
-  author: string | null;
-  description: string | null;
-  categories: (string | null)[] | null;
-  title: string;
-  slug: string;
-}
-async function fetchArticles() {
-  let articles: Article[] = [];
-  try {
-    const articlesResponse = await client.queries.articleConnection();
-    const edges = articlesResponse.data.articleConnection?.edges ?? [];
-
-    articles = edges.reduce((acc: Article[], edge) => {
-      if (edge && edge.node) {
-        acc.push({
-          thumbnail: edge.node.thumbnail ?? null,
-          date: edge.node.date ?? null,
-          author: edge.node.author ?? null,
-          description: edge.node.description ?? null,
-          categories: edge.node.categories ?? null,
-          title: edge.node.title ?? "",
-          slug: edge.node.slug ?? "",
-        });
-      }
-      return acc;
-    }, [] as Article[]);
-  } catch (error) {
-    console.error("Error fetching articles:", error);
-    // Handle error as appropriate
-  }
-  return articles;
-}
-
-// Fetch articles during build
-const articles = await fetchArticles();
 ---
 
 <Boilerplate
@@ -55,19 +16,6 @@ const articles = await fetchArticles();
         Learn more about our work and the services we provide.
       </p>
     </div>
-
-    <div class="container mx-auto space-y-6 p-8">
-      {
-        articles.map((article) => (
-          <ResponsiveCard
-            client:load
-            imageUrl={article.thumbnail}
-            title={article.title}
-            content={article.description}
-            slug={article.slug}
-          />
-        ))
-      }
-    </div>
+    <ArticleList client:visible />
   </div>
 </Boilerplate>
