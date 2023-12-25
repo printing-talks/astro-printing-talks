@@ -3,4 +3,4 @@ Disallow: /private/
 Disallow: /admin/*
 Allow: /
 
-Sitemap: https://www.printingtalks.ae/sitemap.xml
+Sitemap: https://www.printingtalks.ae/sitemap-index.xml

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tinacms dev -c \"astro dev --host\"",
     "start": "astro dev",
-    "build": "astro check && node generateSitemap.js && tinacms build && astro build",
+    "build": "astro check && tinacms build && astro build",
     "sitemap": "node generateSitemap.js",
     "preview": "astro preview",
     "astro": "astro"
@@ -14,6 +14,7 @@
     "@astrojs/check": "^0.3.1",
     "@astrojs/node": "^7.0.0",
     "@astrojs/react": "^3.0.7",
+    "@astrojs/sitemap": "^3.0.3",
     "@astrojs/tailwind": "^5.0.3",
     "@astrojs/vercel": "^6.0.1",
     "@hookform/resolvers": "^3.3.2",
