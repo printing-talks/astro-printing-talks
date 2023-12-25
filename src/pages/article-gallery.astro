@@ -17,7 +17,7 @@ async function fetchArticles() {
     const articlesResponse = await client.queries.articleConnection();
     const edges = articlesResponse.data.articleConnection?.edges ?? [];
 
-    articles = edges.reduce((acc, edge) => {
+    articles = edges.reduce((acc: Article[], edge) => {
       if (edge && edge.node) {
         acc.push({
           thumbnail: edge.node.thumbnail ?? null,
@@ -60,10 +60,10 @@ const articles = await fetchArticles();
       {
         articles.map((article) => (
           <ResponsiveCard
+            client:load
             imageUrl={article.thumbnail}
             title={article.title}
             content={article.description}
-            buttonText="Read"
             slug={article.slug}
           />
         ))

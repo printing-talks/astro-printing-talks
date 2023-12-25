@@ -37,8 +37,6 @@ export default defineConfig({
           beforeSubmit: async ({
             values, // The current values of the form
           }: {
-            form: Form,
-            cms: TinaCMS,
             values: Record<string, any>
           }) => {
             return {
@@ -203,8 +201,6 @@ export default defineConfig({
           beforeSubmit: async ({
             values, // The current values of the form
           }: {
-            form: Form,
-            cms: TinaCMS,
             values: Record<string, any>
           }) => {
             const words = values.title

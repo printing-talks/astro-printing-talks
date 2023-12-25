@@ -16,11 +16,10 @@ interface ResponsiveCardProps {
   imageUrl: string | null;
   title: string;
   content: string | null;
-  buttonText: string;
   slug: string;
 }
 
-const ResponsiveCard: React.FC<ResponsiveCardProps> = ({ imageUrl, title, content, buttonText, slug }) => {
+const ResponsiveCard: React.FC<ResponsiveCardProps> = ({ imageUrl, title, content, slug }) => {
   const processedImageUrl = imageUrl ?? undefined;
   return (
     <a href={`articles/${slug}`} className="product-card relative flex flex-col bg-base-100 shadow-md hover:shadow-xl rounded-xl transition duration-400 min-h-[256px] cursor-pointer overflow-hidden flex-shrink-0 md:flex-row md:max-h-[256px]">
